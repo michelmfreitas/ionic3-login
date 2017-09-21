@@ -1,0 +1,86 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>cadastro</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmit(); $event.preventDefault()">
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Nome</ion-label>
+                <ion-input type="text" formControlName="nome"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>E-mail</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Data de Nascimento</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" formControlName="data_nascimento"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Sexo</ion-label>
+                <ion-select formControlName="sexo">
+                    <ion-option value="f">Feminino</ion-option>
+                    <ion-option value="m">Masculino</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Estado</ion-label>
+                <ion-select [(ngModel)]="estado" formControlName="uf">
+                    <ion-option [value]="estado" *ngFor="let estado of estados">{{estado.estado}} </ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="selectedDistricts">
+                <ion-label>District</ion-label>
+                <ion-select (ionChange)="setCityValues(sDistrict)" [(ngModel)]="sDistrict">
+                    <ion-option [value]="sDistrict" *ngFor="let sDistrict of selectedDistricts">{{sDistrict.name}}</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <!--<ion-list *ngIf="selectedCities">
+              <ion-item *ngFor="let city of selectedCities">
+                    <p>{{city.name}}</p>
+              </ion-item>
+            </ion-list>-->
+
+            <ion-item>
+                <ion-label floating>Senha</ion-label>
+                <ion-input type="password" formControlName="senha"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Repita a senha</ion-label>
+                <ion-input type="password" formControlName="senha2"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Aceito newsletter</ion-label>
+                <ion-checkbox formControlName="newsletter" checked="true"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Aceito termos</ion-label>
+                <ion-checkbox formControlName="termos" checked="true"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <button type="submit" ion-button full primary [disabled]="formCadastro.invalid">Cadastrar</button>
+            </ion-item>
+
+
+        </ion-list>
+    </form>
+
+</ion-content>
