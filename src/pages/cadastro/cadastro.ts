@@ -16,7 +16,9 @@ import { EstadoProvider } from './../../providers/estado/estado.service';
 export class CadastroPage {  
 
   formCadastro: FormGroup; 
-  public estados: Array<Estados>;
+  estados: any;
+  sCidades: any;
+  cidade: any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,7 +28,6 @@ export class CadastroPage {
     public estadosService: EstadoProvider
     ) {
 
-      //let dataRegex = "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$" ;
       let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       
       this.formCadastro = this.formBuilder.group({
@@ -36,23 +37,38 @@ export class CadastroPage {
         sexo: ['', [Validators.required]],
         uf: ['', [Validators.required]],
         cidade: ['', [Validators.required]],
-        senha: ['', [Validators.required, Validators.minLength(2)]],
-        senha2: ['', [Validators.required, Validators.minLength(2)]],
         termos: [''],
         newsletter: [''],
-      })
-
-      
+        senha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12)])],
+        senha2: ['', Validators.required],
+    }, {validator: this.matchingPasswords('senha', 'senha2')}); 
 
   }
 
   ionViewDidLoad() {
-    this.estados = this.estadosService.listar();
+    this.estados = this.estadosService.estados;
   }
-
 
   onSubmit():void{
     this.usuarioService.criar(this.formCadastro.value)
+  }
+
+  sCidade(estado:any):void{
+    this.sCidades = estado.cidades;
+    this.cidade = "";
+  }
+
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
+    }
   }
 
 }
