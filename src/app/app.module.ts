@@ -17,11 +17,11 @@ import { UsuarioProvider } from './../providers/usuario/usuario.service';
 import { EstadoProvider } from '../providers/estado/estado.service';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBmZzIWAFgcMs451yOyqJqEQiZX17jUeNk",
-  authDomain: "ketchapp-d6dc7.firebaseapp.com",
-  databaseURL: "https://ketchapp-d6dc7.firebaseio.com",
-  storageBucket: "ketchapp-d6dc7.appspot.com",
-  messagingSenderId: "107085525725"
+  apiKey: "AIzaSyArZqAFxV6PPTLBBb0UV7SFwqX3tx_QqhQ",
+  authDomain: "ionic-login-cba63.firebaseapp.com",
+  databaseURL: "https://ionic-login-cba63.firebaseio.com",
+  storageBucket: "",
+  messagingSenderId: "566087170897"
 };
 
 @NgModule({

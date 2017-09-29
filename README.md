@@ -1,26 +1,33 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+Este é um repositório para alunos do Curso Ionic 3 do professor Plínio Naves da Udemy.
+O objetivo é a colaboração e aprendizado entre os alunos, afim de criar códigos e componentes úteis a todos.
 
-## How to use this template
+## Ionic Login
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+Objetivo: criar um componente de Login para ser reutilizado em vários projetos, com as funcionalidades:
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+- Utilização do Firebase como DB;
+- Cadastro de usuário com os campos Nome, E-mail, Sexo, Cidade, Estado, Data de Nascimento, Senhas;
+- Validação dos campos do formulário;
+- Login para usuários cadastrados por e-mail e senha;
+- Login com redes sociais: Facebook e Google;
 
-### With the Ionic CLI:
+## Como utilizar
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+1- Clone o projeto do github localmente
+2- Vá ao console e dê o seguinte comando:
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
+    'npm install'
 
-Then, to run it, cd into `myBlank` and run:
+3- Rode o projeto:
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
+    'ionic serve'
 
-Substitute ios for android if not on a Mac.
+4- Caso tenha problemas, poste sua dúvida no grupo do whatsapp.
+
+## Lembre-se:
+
+Somos um grupo de alunos, erros serão comuns. A prática e repetição leva ao melhor aprendizado.
+
+Estude, comente, contribua, melhore.
+
 

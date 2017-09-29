@@ -28,8 +28,10 @@ export class CadastroPage {
     public estadosService: EstadoProvider
     ) {
 
+      //regex de validação do e-mail
       let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       
+      //validação do formulário de cadastro
       this.formCadastro = this.formBuilder.group({
         nome: ['', [Validators.required, Validators.minLength(2)]],
         data_nascimento: ['', Validators.required],
@@ -45,19 +47,40 @@ export class CadastroPage {
 
   }
 
+
+  /*
+  Função que carrega os estados ao carregar a página de cadastro
+  */
   ionViewDidLoad() {
+    //carrega os estados do Firebase
+    //veja a estrutura em /json/estados.json
+
+    //atribui a this.estados os estados carregados na variável estados em EstadosService
     this.estados = this.estadosService.estados;
   }
 
+
+  /*
+  Função quando submetido o formulário
+  */
   onSubmit():void{
+    //chama o método criar() no UsuarioService, passando os valores do form como parâmetros
     this.usuarioService.criar(this.formCadastro.value)
   }
 
+
+  /*
+  Função que carrega as cidades referentes ao estado selecionado
+  */
   sCidade(estado:any):void{
     this.sCidades = estado.cidades;
     this.cidade = "";
   }
 
+
+  /*
+  Função que compara as duas senhas digitadas no formulário
+  */
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
     return (group: FormGroup): {[key: string]: any} => {
       let password = group.controls[passwordKey];
